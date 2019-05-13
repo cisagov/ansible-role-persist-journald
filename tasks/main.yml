@@ -1,2 +1,10 @@
 ---
-# tasks file for skeleton
+# tasks file for persist_journald
+
+- name: Configure journald to persist storage
+  lineinfile:
+    dest: /etc/systemd/journald.conf
+    regexp: '^#Storage='
+    state: present
+    backrefs: yes
+    line: 'Storage=persistent'

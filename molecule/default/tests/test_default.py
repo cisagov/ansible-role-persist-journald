@@ -10,7 +10,12 @@ testinfra_hosts = testinfra.utils.ansible_runner.AnsibleRunner(
 ).get_hosts("all")
 
 
-@pytest.mark.parametrize("x", [True])
-def test_packages(host, x):
-    """Run a dummy test, just to show what one would look like."""
-    assert x
+@pytest.mark.parametrize(
+    "file,content", [("/etc/systemd/journald.conf", r"^Storage=persistent$")]
+)
+def test_files(host, file, content):
+    """Test that config files were modified as expected."""
+    f = host.file(file)
+
+    assert f.exists
+    assert f.contains(content)
