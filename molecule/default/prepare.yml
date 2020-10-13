@@ -1,10 +1,9 @@
 ---
-# systemd is installed anywhere we would be applying this Ansible role
-- name: Prepare
-  hosts: all
-  gather_facts: false
-  tasks:
-    - name: Install systemctl
-      package:
-        name: systemd
-        state: present
+- name: Import upgrade playbook
+  import_playbook: upgrade.yml
+
+- name: Import python playbook
+  import_playbook: python.yml
+
+- name: Install systemctl
+  import_playbook: systemd.yml

@@ -1,0 +1,10 @@
+---
+# systemd is installed anywhere we would be applying this Ansible role
+- name: Install systemctl
+  hosts: all
+  gather_facts: false
+  tasks:
+    - name: Install systemd
+      package:
+        name: systemd
+        state: present
