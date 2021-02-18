@@ -2,7 +2,7 @@
 # tasks file for persist_journald
 
 - name: Configure journald to persist storage
-  lineinfile:
+  ansible.builtin.lineinfile:
     dest: /etc/systemd/journald.conf
     regexp: '^#Storage='
     state: present
