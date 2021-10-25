@@ -1,5 +1,7 @@
 ---
 - name: Converge
   hosts: all
-  roles:
-    - role: ansible-role-persist-journald
+  tasks:
+    - name: Include ansible-role-persist-journald
+      ansible.builtin.include_role:
+        name: ansible-role-persist-journald
