@@ -1,8 +1,7 @@
 # ansible-role-persist-journald #
 
 [![GitHub Build Status](https://github.com/cisagov/ansible-role-persist-journald/workflows/build/badge.svg)](https://github.com/cisagov/ansible-role-persist-journald/actions)
-[![Total alerts](https://img.shields.io/lgtm/alerts/g/cisagov/ansible-role-persist-journald.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/cisagov/ansible-role-persist-journald/alerts/)
-[![Language grade: Python](https://img.shields.io/lgtm/grade/python/g/cisagov/ansible-role-persist-journald.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/cisagov/ansible-role-persist-journald/context:python)
+[![CodeQL](https://github.com/cisagov/ansible-role-persist-journald/workflows/CodeQL/badge.svg)](https://github.com/cisagov/ansible-role-persist-journald/actions/workflows/codeql-analysis.yml)
 
 An Ansible role for configuring an instance to persist journald
 logging entries across reboots.
@@ -34,9 +33,10 @@ Here's how to use it in a playbook:
 - hosts: all
   become: yes
   become_method: sudo
-  roles:
-    - persist_journald
-```
+  tasks:
+    - name: Configure journald to persist across reboots
+      ansible.builtin.include_role:
+        name: persist_journald
 
 ## Contributing ##
 
