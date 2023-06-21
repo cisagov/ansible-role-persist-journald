@@ -37,6 +37,7 @@ Here's how to use it in a playbook:
     - name: Configure journald to persist across reboots
       ansible.builtin.include_role:
         name: persist_journald
+```
 
 ## Contributing ##
 
@@ -58,4 +59,4 @@ with this waiver of copyright interest.
 
 ## Author Information ##
 
-Shane Frasier - <jeremy.frasier@trio.dhs.gov>
+Shane Frasier - <jeremy.frasier@gwe.cisa.dhs.gov>
