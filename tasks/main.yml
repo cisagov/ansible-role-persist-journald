@@ -1,6 +1,4 @@
 ---
-# tasks file for persist_journald
-
 - name: Configure journald to persist storage
   ansible.builtin.lineinfile:
     dest: /etc/systemd/journald.conf
