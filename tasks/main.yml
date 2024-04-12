@@ -6,5 +6,5 @@
     dest: /etc/systemd/journald.conf
     regexp: '^#Storage='
     state: present
-    backrefs: yes
+    backrefs: true
     line: 'Storage=persistent'
