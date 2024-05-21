@@ -1,10 +1,10 @@
 """Module containing the tests for the default scenario."""
 
 # Standard Python Libraries
+import configparser
 import os
 
 # Third-Party Libraries
-import pytest
 import testinfra.utils.ansible_runner
 
 testinfra_hosts = testinfra.utils.ansible_runner.AnsibleRunner(
@@ -12,12 +12,10 @@ testinfra_hosts = testinfra.utils.ansible_runner.AnsibleRunner(
 ).get_hosts("all")
 
 
-@pytest.mark.parametrize(
-    "file,content", [("/etc/systemd/journald.conf", r"^Storage=persistent$")]
-)
-def test_files(host, file, content):
-    """Test that config files were modified as expected."""
-    f = host.file(file)
-
-    assert f.exists
-    assert f.contains(content)
+def test_config(host):
+    """Test that systemd-journald is configured as expected."""
+    cmd = host.run("systemd-analyze cat-config systemd/journald.conf")
+    assert cmd.rc == 0
+    config = configparser.ConfigParser(strict=False)
+    config.read_string(cmd.stdout)
+    assert config["Journal"]["Storage"] == "persistent"
