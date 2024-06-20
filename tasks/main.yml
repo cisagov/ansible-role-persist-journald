@@ -1,8 +1,25 @@
 ---
-- name: Configure journald to persist storage
-  ansible.builtin.lineinfile:
-    dest: /etc/systemd/journald.conf
-    regexp: '^#Storage='
-    state: present
-    backrefs: true
-    line: 'Storage=persistent'
+- name: >-
+    Ensure that the directory where the systemd-journald drop-in will
+    live actually exists
+  ansible.builtin.file:
+    group: root
+    mode: 0755
+    owner: root
+    path: /etc/systemd/journald.conf.d
+    state: directory
+
+- name: Configure systemd-journald to persist storage
+  community.general.ini_file:
+    group: root
+    mode: 0644
+    # This is just to maintain the look and feel of the
+    # /etc/systemd/journald.conf file as provided by systemd-journald.
+    no_extra_spaces: true
+    option: Storage
+    owner: root
+    path: /etc/systemd/journald.conf.d/99-ansible-role-persist-journald.conf
+    section: Journal
+    value: persistent
+  notify:
+    - Restart systemd-journald
