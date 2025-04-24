@@ -4,7 +4,7 @@
     live actually exists
   ansible.builtin.file:
     group: root
-    mode: 0755
+    mode: u=rwx,g=rx,o=rx
     owner: root
     path: /etc/systemd/journald.conf.d
     state: directory
@@ -12,7 +12,7 @@
 - name: Configure systemd-journald to persist storage
   community.general.ini_file:
     group: root
-    mode: 0644
+    mode: u=rw,g=r,o=r
     # This is just to maintain the look and feel of the
     # /etc/systemd/journald.conf file as provided by systemd-journald.
     no_extra_spaces: true
