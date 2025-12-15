@@ -1,6 +1,7 @@
 # ansible-role-persist-journald #
 
 [![GitHub Build Status](https://github.com/cisagov/ansible-role-persist-journald/workflows/build/badge.svg)](https://github.com/cisagov/ansible-role-persist-journald/actions)
+[![License](https://img.shields.io/github/license/cisagov/ansible-role-persist-journald)](https://spdx.org/licenses/)
 [![CodeQL](https://github.com/cisagov/ansible-role-persist-journald/workflows/CodeQL/badge.svg)](https://github.com/cisagov/ansible-role-persist-journald/actions/workflows/codeql-analysis.yml)
 
 An Ansible role for configuring an instance to persist journald
